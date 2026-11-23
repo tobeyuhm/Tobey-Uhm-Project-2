@@ -1,0 +1,31 @@
+PROJECT: FIN 43900 Project 2 - Meridian Foundation Reserve process review
+STUDENT: Tobey Uhm
+VIDEO: 2 Code walkthrough
+STABLE VIDEO ID/URL: [YouTube URL after upload]
+TITLE: Tobey Uhm Project 2 Video 2
+DURATION: [m:ss after recording; limit 5:00]
+REPOSITORY COMMIT/FROZEN VERSION: tag project2-submission
+
+Note: prepared from the delivery script the student reads on camera (script drafted with Claude Opus 5.5, disclosed in docs/validation-and-ai-use.md). REPLACE with the corrected YouTube transcript after recording: fix finance terms, tickers (BIL, IEF, AGG, LQD, ACWI, JOBY), names and every number; timestamps are approximate section starts.
+
+[0:00] Tobey Uhm: Tobey Uhm, Project 2, code walkthrough. I used Claude Opus 5.5 to build this code and draft this script, and Codex GPT-5 for the earlier lab code. The analysis and decision are mine. Education, not investment advice.
+
+[0:15] Tobey Uhm: The architecture is one engine package, `p2`, with three entry points: `analysis.py` writes the frozen output, `app.py` is the web app, and `locked_test.py` runs my locked record. Everything is standard-library Python, so there's no install. The flow is data, then point-in-time loading, estimates, the optimizer plus the mandate rules, then stress, stop conditions and walk-forward, then output, then the app.
+
+[0:45] Tobey Uhm: Data first. Two frozen files, Yahoo monthly adjusted closes and Treasury daily yields, each SHA-256 hashed. `analysis.py` refuses to run if a hash changes. In `data.py`, `window` returns the last N monthly returns ending at the decision month, and drops any ticker without a full window, which is how JOBY's SPAC history stays out. `value_known_on` takes the latest curve observation dated strictly before the decision date, the one-day lag I found in Lab 17.
+
+[1:20] Tobey Uhm: The mandate lives in a config file. `mandate.py` turns it into rules. Each returns the measured value, the limit, pass or fail, and an ID: M3 is the payout reserve, 4 times 0.75 over 100 = 3%. M5 groups weights by issuer, so a company's bond and stock count together. O1 is the CPI + 4 objective net of trading costs, R1 is my 95% loss, and G1 is turnover, which flags "needs approval" rather than failing.
+
+[1:55] Tobey Uhm: The optimizer is an exhaustive grid: every long-only mix of six assets in 5-point steps, 53,130 of them. It skips any mix over the issuer cap or under the reserve. It subtracts the trading cost of getting there from the expected return. Then it keeps the lowest-volatility mix that clears the objective and the loss limit. If nothing passes, it returns None with a diagnosis. That's a real answer, not an error.
+
+[2:25] Tobey Uhm: `run_decision` estimates on the window, builds both baselines, equal weight and inverse volatility, runs the optimizer, applies the term-spread signal, and checks every portfolio against the mandate. `walk_forward` repeats that every December from 2011, holds the weights for a year as they drift, and charges costs. If no mix passes, the process stops and holds the benchmark. `stop_status` applies my three pre-set stop tests.
+
+[2:55] Tobey Uhm: Validation. I'm running the 23 tests. The key ones are known answers. The Lab 13 answer key: B fails three rules, with Acme at 9%. The Lab 15 answer key: 0, 20, 25, 55 at 6.51%. The Lab 17 DGS10 values. The highest-risk technical claim is no look-ahead. This test deletes every price and yield after December 2016, 2019 and 2024, reruns, and gets identical weights. All 23 pass.
+
+[3:25] Tobey Uhm: The locked changed-input test. My AI-off prediction was committed and pushed at `[commit, time]`, before the run. The runner refuses to run otherwise. I changed `[input]` from `[old]` to `[new]`. I predicted `[your prediction in one sentence]`. The result: `[actual in one sentence]`. `[Matched / did not match]`, because `[the mechanism in one sentence]`. The decision `[stays REJECT / changes to ...]`.
+
+[4:05] Tobey Uhm: To reproduce: clone, `python analysis.py`, which rewrites the output byte-for-byte, then `python app.py`. One limitation: expected returns are trailing historical means. The 60-month window moves the portfolio 30 points, and that's the failure mode the stop rule catches. Another: my S9 measure, a parametric 95% loss, didn't foresee 2022.
+
+[4:35] Tobey Uhm: That's the code. Thanks.
+
+END OF TRANSCRIPT

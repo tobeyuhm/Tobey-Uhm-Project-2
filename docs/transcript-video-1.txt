@@ -1,0 +1,25 @@
+PROJECT: FIN 43900 Project 2 - Meridian Foundation Reserve process review
+STUDENT: Tobey Uhm
+VIDEO: 1 How my system and thinking changed + AI-output check
+STABLE VIDEO ID/URL: [YouTube URL after upload]
+TITLE: Tobey Uhm Project 2 Video 1
+DURATION: [m:ss after recording; limit 3:00]
+REPOSITORY COMMIT/FROZEN VERSION: tag project2-submission
+
+Note: prepared from the delivery script the student reads on camera (script drafted with Claude Opus 5.5, disclosed in docs/validation-and-ai-use.md). REPLACE with the corrected YouTube transcript after recording: fix finance terms, tickers (BIL, IEF, AGG, LQD, ACWI, JOBY), names and every number; timestamps are approximate section starts.
+
+[0:00] Tobey Uhm: I'm Tobey Uhm, FIN 439 Project 2. Two statements first. I used Claude, Opus 5.5 in Claude Code, to build this app's code, tests and documents and to draft my scripts, and OpenAI Codex, GPT-5, for the Lab 13 to 17 code it grows from. The analysis and the decision are mine. This is education, not investment advice.
+
+[0:22] Tobey Uhm: My system started in Lab 13 as a rule checker. S9, "no calendar-year loss over 10%", was an unverifiable promise. My thinking then was: if a portfolio passes every rule, it's acceptable.
+
+[0:38] Tobey Uhm: Lab 15 added an optimizer. Changing the window from 60 to 36 months moved the answer 60 points. So I started asking whether the process is stable enough to trust.
+
+[0:52] Tobey Uhm: Project 2 changed three things. I gave S9 a measure, a 95% one-year loss of at most 10%, pending CIO confirmation. I wrote stop conditions before seeing results. And I added a walk-forward test: fifteen Decembers, each seeing only data up to that date. That test moved my call from Lab 15's "pilot" to "reject".
+
+[1:15] Tobey Uhm: Now one AI output I checked. In Lab 15, Codex wrote my optimizer, and on all 60 months it returned 80% T-bills and 20% JOBY. I ran that through my Lab 13 logic. JOBY is one company, and S6 caps any single issuer at 8%. The AI's optimizer had no issuer rule, so its answer broke my own mandate. I rejected it and fixed the code: Project 2 caps every non-exempt issuer, and this test proves the cap binds.
+
+[1:45] Tobey Uhm: A second check. Claude said Treasury's par yield curve is the same series as FRED's DGS10, which mattered because FRED was blocking my machine. In Lab 17 I'd recorded DGS10 at 5.24, 5.26 and 5.29 for late September. The Treasury file matches all three exactly, so I accepted it, and that's now a test.
+
+[2:10] Tobey Uhm: The biggest change in my thinking: passing the rules is the start, not the answer. Today the process passes every rule and still fails its own stop tests. I defend that in Video 3.
+
+END OF TRANSCRIPT
