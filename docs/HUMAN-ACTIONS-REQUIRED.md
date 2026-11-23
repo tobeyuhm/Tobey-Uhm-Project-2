@@ -2,7 +2,7 @@
 
 0. **Read `docs/locked-prediction-instructions.md`** before closing AI for the locked record.
 1. **Read and own the decision.** Check every number in `docs/decision-memo.md` against `output/report.md`. If you change the action, range or triggers, edit `config/recommendation.json` and the memo, then run `python analysis.py`.
-2. **Create the GitHub repo and push.** Create `tobeyuhm/Tobey-Uhm-Project-2` (public, or private with instructor access). Then run `git remote add origin https://github.com/tobeyuhm/Tobey-Uhm-Project-2.git` and `git push -u origin main`.
+2. **GitHub repo: done** (2026-11-23). https://github.com/tobeyuhm/Tobey-Uhm-Project-2, public; opens logged out. `git push` now works from this folder.
 3. **Locked Changed-Input Record (AI closed the whole time):**
    1. Fill every `TO BE WRITTEN` field in `docs/locked-prediction.md`. Pick a value that is not already in the stress table.
    2. `git add docs/locked-prediction.md` -> `git commit -m "Locked prediction (AI off)"` -> `git push`.
