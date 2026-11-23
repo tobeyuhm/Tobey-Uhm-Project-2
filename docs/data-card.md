@@ -44,5 +44,5 @@
 ## 4. Checks still to tick by hand before submission
 
 - [x] Treasury 10-year for 2026-09-28/29/30 equals Lab 17 DGS10 (5.24 / 5.26 / 5.29%): matched in the frozen file.
-- [ ] Treasury 10-year and 3-month for 2026-10-29 equal 4.98% and 4.18% on treasury.gov.
-- [ ] Yahoo history page for ACWI shows an October 2026 adjusted close near 156.04.
+- [x] Treasury 10-year and 3-month for 2026-10-29 equal 4.98% and 4.18% on treasury.gov (checked by hand, 2026-11-23: match).
+- [x] Yahoo history page for ACWI shows an October 2026 adjusted close near 156.04 (checked by hand, 2026-11-23: match).

@@ -6,7 +6,7 @@
 3. **Locked Changed-Input Record: done** (prediction `066734f`, run `a458ecc`, reconciliation in validation section 5). Read the reconciliation and change any wording that isn't how you'd say it.
 4. **Verify the AI table: done** (Codex GPT-5 confirmed for Labs 13-17; recommendation wording Accepted).
 5. **Partner cold run:** record it in section 7, row 3 (Lab 20). If there was a failure, fix it and push.
-6. **Hand checks** in `docs/data-card.md`, section 4 (two boxes).
+6. **Hand checks: done** (2026-11-23; Treasury 10/29 and ACWI October match).
 7. **Record the videos** from `docs/video-scripts.md`:
    - Use the webcam inset and upload each as Unlisted with captions.
    - Correct the auto-captions and replace each `docs/transcript-video-N.txt` with the corrected text.
