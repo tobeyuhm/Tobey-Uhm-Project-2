@@ -44,6 +44,8 @@ On macOS/Linux, use `python3` if `python` is Python 2. To use another port: `POR
 
 **Using the app.** The red banner is the frozen recommendation. Under **Change an input and rerun** you can set the estimation window, shift an expected return, override JOBY, scale trading costs, or change the single-company limit, payout reserve, loss limit or CPI. You can also turn the signal off. Press **Run**. The stop conditions, every portfolio's mandate verdict (with the failing rule), the stress table and the walk-forward all recompute through the same engine, in about 5 seconds. **Reset to base case** returns to the frozen inputs. `/api/run?window=60` returns the same run as JSON.
 
+**Live public app: https://meridian-reserve-review.onrender.com**. Anyone can open it; no install needed. It sleeps when idle, so the first visit can take about a minute, and each Run takes about 15 s.
+
 **Public deployment (optional).** `render.yaml` deploys the same app as a free public web service on Render:
 1. Sign in at render.com with GitHub.
 2. Choose New > Blueprint and pick this repository.
