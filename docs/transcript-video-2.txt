@@ -6,26 +6,48 @@ TITLE: Tobey Uhm Project 2 Video 2
 DURATION: 4:36
 REPOSITORY COMMIT/FROZEN VERSION: tag project2-submission
 
-Note: prepared from the delivery script the student reads on camera (script drafted with Claude Opus 5.5, disclosed in docs/validation-and-ai-use.md). REPLACE with the corrected YouTube transcript after recording: fix finance terms, tickers (BIL, IEF, AGG, LQD, ACWI, JOBY), names and every number; timestamps are approximate section starts.
+Note: corrected from YouTube's automatic captions. Corrections cover the speaker's name, tool names (Claude, Codex), file and function names (analysis.py, app.py, mandate.py, value_known_on, run_decision, walk_forward, stop_status), tickers (JOBY, AGG), "SPAC", "byte for byte", and the commit ID. Words at 0:23-0:31 and the "3%" at 1:31 (captioned as "3.3%") follow the delivery script, which the student confirmed was spoken. At 2:51 the student pauses after the first test command ran outside the project folder, moves to the project folder, and reruns it (23 tests, OK). The student's words are otherwise kept. Timestamps are YouTube caption times.
 
-[0:00] Tobey Uhm: Tobey Uhm, Project 2, code walkthrough. I used Claude Opus 5.5 to build this code and draft this script, and Codex GPT-5 for the earlier lab code. The analysis and decision are mine. Education, not investment advice.
+[0:00] Tobey Uhm: This is Tobey Uhm, Project 2, code walkthrough. I used Claude Opus 5.5 to build this code and draft the script, and Codex GPT-5 for the earlier lab code.
 
-[0:14] Tobey Uhm: The architecture is one engine package, `p2`, with three entry points: `analysis.py` writes the frozen output, `app.py` is the web app, and `locked_test.py` runs my locked record. It's standard-library Python, so there's nothing to install. The flow is: frozen data, point-in-time loading, estimates, optimizer and mandate rules, then stress, stop tests and walk-forward, then output and the app.
+[0:10] Tobey Uhm: The analysis and the decision are mine. This is education, not investment advice.
 
-[0:40] Tobey Uhm: Data. Two frozen files, Yahoo monthly adjusted closes and Treasury daily yields, both SHA-256 hashed; `analysis.py` refuses to run if a hash changes. `window` returns the last N monthly returns ending at the decision month, which keeps out the future and JOBY's pre-merger SPAC prices. `value_known_on` only returns a yield dated before the decision: the one-day lag from Lab 17.
+[0:15] Tobey Uhm: So the architecture is one engine package, p2, with three entry points. analysis.py writes the frozen output.
 
-[1:08] Tobey Uhm: The mandate is a config file, and `mandate.py` turns it into rules that return the measured value, the limit, pass or fail, and an ID. M3 is the payout reserve: 4 times 0.75 over 100 is 3%. M5 groups weights by issuer. O1 is CPI + 4 net of trading costs. R1 is my 95% loss. G1 is turnover, which flags "needs approval" instead of failing.
+[0:23] Tobey Uhm: app.py writes - is the web app, and locked_test.py runs my locked record. It's standard-library
 
-[1:36] Tobey Uhm: The optimizer tries every long-only mix of six assets in 5-point steps, 53,130 of them. It drops any mix over the issuer cap or under the reserve. It subtracts the trading cost from the expected return, and keeps the lowest-volatility mix that clears the objective and the loss limit. If none passes, it returns None with a diagnosis. That's a real answer, not an error.
+[0:31] Tobey Uhm: Python, so there's nothing to install. The flow is frozen data, then point-in-time loading, estimates, optimizer and mandate rules, then stress, stop tests and walk-forward, then output, and then the app.
 
-[2:02] Tobey Uhm: `run_decision` estimates, builds both baselines, equal weight and inverse volatility, runs the optimizer, applies the term-spread signal and checks every portfolio. `walk_forward` repeats that each December from 2011, lets the weights drift for a year and charges costs; if nothing passes, it holds the benchmark. `stop_status` applies my three pre-set stop tests.
+[0:47] Tobey Uhm: So for the data: two frozen files, Yahoo monthly adjusted closes and Treasury daily yields, both SHA-256 hashed. analysis.py refuses to run if a hash changes.
 
-[2:28] Tobey Uhm: Validation, run live. The key tests are known answers: the Lab 13 answer key, the Lab 15 answer key at 6.51%, and the Lab 17 DGS10 values. The highest-risk technical claim is no look-ahead. This test deletes every price and yield after December 2016, 2019 and 2024, reruns, and gets identical weights. All 23 pass.
+[0:55] Tobey Uhm: window returns the last N monthly returns ending at the decision month, which keeps out the future and JOBY's pre-merger SPAC prices. value_known_on only returns a yield dated before the decision: the one-day lag from Lab 17.
 
-[2:55] Tobey Uhm: The locked changed-input test. My AI-off prediction was committed and pushed at 3:32 PM on November 23rd, commit 066734f, before the run; the runner refuses otherwise. I raised CPI from 2.5 to 3%, so the target goes from 6.5 to 7%. I predicted one grid step from T-bills to ACWI, about 7.6%, and REJECT holding. Today's weights matched exactly, because the next 5-point step is the only way to clear 7%. I missed on 2022: minus 12.3%, not about 11. Going into that year the higher target swapped 10% of T-bills for AGG, and bonds fell 13%. I expected equity risk; it was duration risk. REJECT holds.
+[1:20] Tobey Uhm: And so the mandate - the mandate is a config file, and mandate.py turns it into rules that return the measured value, the limit, pass or fail, and an ID.
 
-[3:40] Tobey Uhm: To reproduce: clone or download the ZIP, run `python analysis.py`, which rewrites the output byte-for-byte, then `python app.py`. The main failure mode is the estimates: they're trailing historical means, and a 60-month window moves the portfolio 30 points. That's what stop test S2 catches. A second limitation: my parametric loss measure didn't foresee 2022.
+[1:31] Tobey Uhm: M3 is the payout reserve: four times 0.75 over 100 is 3%.
 
-[4:05] Tobey Uhm: That's the code.
+[1:37] Tobey Uhm: M5 groups weights by issuer. O1 is CPI plus 4 net of trading costs. R1 is my 95% loss. G1 is turnover, which flags "needs approval" instead of failing.
 
-END OF TRANSCRIPT
+[1:45] Tobey Uhm: And so the optimizer tries every long-only mix of assets in five-point steps, 53,130 of them. It drops any mix over the issuer cap or under the reserve. It subtracts the trading cost from the expected return and keeps the lowest-volatility mix that clears the objective and the loss limit. If none passes, it returns None with a diagnosis. That's a real answer, not an error.
+
+[2:18] Tobey Uhm: So, one decision: run_decision estimates, builds both baselines, equal weight and inverse volatility, runs the optimizer, applies the term-spread signal and checks every portfolio. walk_forward repeats that each December from 2011, lets the weights drift for a year and charges costs. If nothing passes, it holds the benchmark. stop_status applies my three preset stop tests.
+
+[2:42] Tobey Uhm: So for the validation, running live: the key tests are known answers. Uh, the Lab 13 answer key.
+
+[2:51] Tobey Uhm: Wait a sec. Okay, sorry for the error there. I was just doing some troubleshooting; had to move it into my project folder. But as you can see now, um, it all says OK.
+
+[3:04] Tobey Uhm: Uh, this view will give a better look at all of the 23 different passes. Okay. So next is the locked changed-input test.
+
+[3:13] Tobey Uhm: My AI-off prediction was committed and pushed at 3:32 p.m. on November 23rd, commit 066734f, before the run. The runner refuses otherwise. I raised CPI from 2.5 to 3%,
+
+[3:28] Tobey Uhm: so the target goes from 6.5 to 7%. I predicted one grid step from T-bills to ACWI, about 7.6%, and REJECT holding.
+
+[3:39] Tobey Uhm: Today's weights matched exactly, because the next five-point step is the only way to clear 7%. I missed on 2022: minus 12.3%, not about 11. Going into that year, the higher target swapped 10% of T-bills for AGG, and bonds fell 13%. I expected equity risk; it was duration risk. REJECT holds.
+
+[3:56] Tobey Uhm: So, just to reproduce: clone or download the ZIP, run python analysis.py, which rewrites the output byte for byte, then python app.py.
+
+[4:11] Tobey Uhm: The main failure mode is the estimates: they're trailing historical means, and a 60-month window moves the portfolio 30 points. That's what stop test S2 catches. A second limitation: my parametric loss measure didn't foresee 2022.
+
+[4:27] Tobey Uhm: And that is all of the code used in this project. I'll just finish scrolling down so you can see everything.
+
+END OF CORRECTED TRANSCRIPT

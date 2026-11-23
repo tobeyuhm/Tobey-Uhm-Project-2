@@ -7,9 +7,6 @@
 4. **Verify the AI table: done** (Codex GPT-5 confirmed for Labs 13-17; recommendation wording Accepted).
 5. **Partner cold run:** record it in section 7, row 3 (Lab 20). If there was a failure, fix it and push.
 6. **Hand checks: done** (2026-11-23; Treasury 10/29 and ACWI October match).
-7. **Record the videos** from `docs/video-scripts.md`:
-   - Use the webcam inset and upload each as Unlisted with captions.
-   - Correct the auto-captions and replace each `docs/transcript-video-N.txt` with the corrected text.
-   - Video 2's locked-test lines are already filled with your actual result.
-8. **Fill the manifest** `docs/project-submission-manifest.csv`: URLs, durations, access checks.
+7. **Videos: done** (2026-11-23). Uploaded Unlisted; transcripts corrected from YouTube captions.
+8. **Manifest: done** (URLs, IDs, durations, timestamps, access checks).
 9. **Freeze it:** `git tag project2-submission` -> `git push --tags`. Attach `docs/decision-memo.md` and `docs/validation-and-ai-use.md` to Brightspace.
