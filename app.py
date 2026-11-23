@@ -126,6 +126,8 @@ def compute(ov):
     stop = P.stop_status(CFG, stress, wf)
     result = {"decision": stress["base"], "stress": stress["rows"], "wf": wf, "stop": stop}
     with LOCK:
+        if len(CACHE) >= 64:              # a public deployment must not grow memory without bound
+            CACHE.pop(next(iter(CACHE)))
         CACHE[key] = result
     return result
 
@@ -343,12 +345,16 @@ def main():
         print("output/visible_output.json is missing - run: python analysis.py")
         sys.exit(1)
     port = int(os.environ.get("PORT", "8502"))
-    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
-    url = f"http://localhost:{port}"
-    print(f"Meridian Reserve app running at {url}  (Ctrl+C to stop)")
+    # Locally the app listens only on this computer. A host such as Render sets RENDER (or the
+    # owner sets HOST=0.0.0.0) so the server accepts outside connections.
+    hosted = bool(os.environ.get("RENDER")) or os.environ.get("HOST") == "0.0.0.0"
+    host = "0.0.0.0" if hosted else "127.0.0.1"
     print("Computing the base case (about 5 seconds)...")
     compute(parse_controls("")[1])
-    if os.environ.get("NO_BROWSER") != "1" and "--no-browser" not in sys.argv:
+    server = ThreadingHTTPServer((host, port), Handler)
+    url = f"http://localhost:{port}"
+    print(f"Meridian Reserve app running at {url} on {host}  (Ctrl+C to stop)")
+    if not hosted and os.environ.get("NO_BROWSER") != "1" and "--no-browser" not in sys.argv:
         threading.Timer(0.5, lambda: webbrowser.open(url)).start()
     try:
         server.serve_forever()

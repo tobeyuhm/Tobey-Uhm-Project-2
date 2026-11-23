@@ -1,0 +1,14 @@
+# Render blueprint: a free public web service for the committee app.
+# Render reads this file when you choose New > Blueprint and pick this repository.
+# No build step and no packages: the app is standard-library Python.
+services:
+  - type: web
+    name: meridian-reserve-review
+    runtime: python
+    plan: free
+    buildCommand: "python --version"
+    startCommand: "python app.py"
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"

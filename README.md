@@ -44,6 +44,12 @@ On macOS/Linux, use `python3` if `python` is Python 2. To use another port: `POR
 
 **Using the app.** The red banner is the frozen recommendation. Under **Change an input and rerun** you can set the estimation window, shift an expected return, override JOBY, scale trading costs, or change the single-company limit, payout reserve, loss limit or CPI. You can also turn the signal off. Press **Run**. The stop conditions, every portfolio's mandate verdict (with the failing rule), the stress table and the walk-forward all recompute through the same engine, in about 5 seconds. **Reset to base case** returns to the frozen inputs. `/api/run?window=60` returns the same run as JSON.
 
+**Public deployment (optional).** `render.yaml` deploys the same app as a free public web service on Render:
+1. Sign in at render.com with GitHub.
+2. Choose New > Blueprint and pick this repository.
+3. Deploy. No packages or keys are needed. On Render the app listens on all interfaces; locally it stays on `127.0.0.1`.
+4. The free tier sleeps when idle, so the first visit can take about a minute to wake.
+
 Optional, needs internet: `python tools/download_data.py` re-downloads the data. This **changes** the frozen files (new months, restated adjusted closes), and `analysis.py` will then refuse to run until you accept the new snapshot. Do not run it to reproduce the submitted result.
 
 ## Repository map
