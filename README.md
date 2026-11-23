@@ -33,6 +33,13 @@ python -m unittest discover -s tests -v    # 23 validation tests
 python app.py                              # opens http://localhost:8502
 ```
 
+**If `git clone` fails** (for example "Could not resolve host: github.com" on a restricted network, or git isn't installed), download the code without git:
+1. On the repository page, click **Code**, then **Download ZIP**. Or open https://github.com/tobeyuhm/Tobey-Uhm-Project-2/archive/refs/heads/main.zip.
+2. Extract it. This gives you a folder named `Tobey-Uhm-Project-2-main`.
+3. `cd Tobey-Uhm-Project-2-main`, then run the same three `python` commands.
+
+Everything except `locked_test.py`, which needs git history, works from the ZIP.
+
 On macOS/Linux, use `python3` if `python` is Python 2. To use another port: `PORT=8600 python app.py` (PowerShell: `$env:PORT=8600; python app.py`). Stop the app with Ctrl+C.
 
 **Using the app.** The red banner is the frozen recommendation. Under **Change an input and rerun** you can set the estimation window, shift an expected return, override JOBY, scale trading costs, or change the single-company limit, payout reserve, loss limit or CPI. You can also turn the signal off. Press **Run**. The stop conditions, every portfolio's mandate verdict (with the failing rule), the stress table and the walk-forward all recompute through the same engine, in about 5 seconds. **Reset to base case** returns to the frozen inputs. `/api/run?window=60` returns the same run as JSON.

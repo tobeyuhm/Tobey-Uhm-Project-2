@@ -125,4 +125,10 @@ Timing: about 130 spoken words a minute. The `[0:00]` marks are targets. **Bold 
 **Prepared answers (not part of the timed script; for the partner rehearsal):**
 - *"Isn't 85% T-bills safer?"* Safer this year, yes. But over seven years it needs 20%-a-year equity returns to hit CPI + 4. That's the estimate the 60-month window contradicts.
 - *"Why not just use the 60-month window?"* It returned 6.65% against 7.00% for the benchmark over its holdout, with a -13.6% year. Picking the window that looks best is the overfitting I'm rejecting.
+- *Partner's cold-run question: "The 60/40 doesn't hold the $3M reserve. How much of its 1.35-point lead survives if it must?"* Most of it, depending on the T-bill share. Over the same holdout, the reserve-compliant mixes returned:
+  - ACWI 60 / AGG 37 / BIL 3: 7.67%, a lead of 1.34 pts over my process.
+  - The 57.5 / 37.5 / 5 midpoint: 7.44%, a lead of 1.11 pts.
+  - ACWI 55 / AGG 40 / BIL 5: 7.20%, a lead of 0.87 pts.
+
+  The reserve costs between 0.01 and 0.48 pts a year, but every version still lost about 15% in 2022. That's why the CIO question stands. (Source: the "recommended reserve range" table in `output/report.md`.)
 - *"What can't your system establish?"* Forward-looking returns, and whether 2022 was a one-off. That's why the answer is a paper track with triggers, not "never".
