@@ -196,7 +196,7 @@ The range clears the 6.5% hurdle on realised returns but not a -10% worst calend
 
 ## Data
 
-- `data/prices_monthly.csv`: Yahoo Finance chart API, interval=1mo, adjclose; 223 rows; SHA-256 `181d3b83cd42e3e9...`
-- `data/treasury_curve_daily.csv`: U.S. Treasury daily par yield curve CSV; 4722 rows; SHA-256 `b4f316c4574ceb13...`
+- `data/prices_monthly.csv`: Yahoo Finance chart API, interval=1mo, adjclose; 223 rows; SHA-256 `aa72f3e54b31326f...`
+- `data/treasury_curve_daily.csv`: U.S. Treasury daily par yield curve CSV; 4722 rows; SHA-256 `c71eb4637ec56d3e...`
 - Exclusion: JOBY prices before 2021-08 are the pre-merger SPAC (Reinvent Technology Partners) and are not used.
 - Sources, definitions and lineage: `docs/data-card.md` and `data/source_ledger.csv`.

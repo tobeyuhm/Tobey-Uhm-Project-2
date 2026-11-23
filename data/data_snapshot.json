@@ -3,13 +3,14 @@
   "files": {
     "prices_monthly.csv": {
       "rows": 223,
-      "sha256": "181d3b83cd42e3e97b15aeb564a58068bf2180d86ed55c9e450acd57b413972e",
+      "sha256": "aa72f3e54b31326ff19f21f7b87eefb91164facf427c45a4091bc4bd5b7311ff",
       "source": "Yahoo Finance chart API, interval=1mo, adjclose"
     },
     "treasury_curve_daily.csv": {
       "rows": 4722,
-      "sha256": "b4f316c4574ceb13f341de025727f1a03aa4e289cf3ca7b9db3c7aa6e886dfac",
+      "sha256": "c71eb4637ec56d3e10ef6df77d5c218f5aa2bc77553a232c30f2c2ce9c17de13",
       "source": "U.S. Treasury daily par yield curve CSV"
     }
-  }
+  },
+  "hash_note": "SHA-256 of the file with CRLF line endings normalised to LF"
 }

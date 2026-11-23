@@ -29,7 +29,7 @@ Needs Python 3.10 or newer. **No third-party packages**: the engine and the web 
 git clone https://github.com/tobeyuhm/Tobey-Uhm-Project-2.git
 cd Tobey-Uhm-Project-2
 python analysis.py                         # rebuilds output/ from the frozen data (about 10 s)
-python -m unittest discover -s tests -v    # 24 validation tests
+python -m unittest discover -s tests -v    # 23 validation tests
 python app.py                              # opens http://localhost:8502
 ```
 

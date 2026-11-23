@@ -155,7 +155,8 @@ class PointInTime(unittest.TestCase):
     def test_data_snapshot_hashes(self):
         snap = json.loads((DATA / "data_snapshot.json").read_text(encoding="utf-8"))
         for name, meta in snap["files"].items():
-            self.assertEqual(hashlib.sha256((DATA / name).read_bytes()).hexdigest(), meta["sha256"], name)
+            self.assertEqual(hashlib.sha256((DATA / name).read_bytes().replace(b"\r\n", b"\n")).hexdigest(),
+                             meta["sha256"], name)
 
 
 class MandateAndOptimizer(unittest.TestCase):

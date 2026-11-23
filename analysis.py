@@ -22,7 +22,8 @@ WINDOW_VARIANTS = [24, 36, 60, 120]
 
 
 def sha256(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    # Line endings normalised so a Windows (CRLF) and a macOS/Linux (LF) clone hash alike.
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def build():
