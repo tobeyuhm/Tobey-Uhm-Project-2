@@ -68,9 +68,9 @@ Timing: about 130 spoken words a minute. The `[0:00]` marks are targets. **Bold 
 
 [2:55] Validation. I'm running the 23 tests. The key ones are known answers. The Lab 13 answer key: B fails three rules, with Acme at 9%. The Lab 15 answer key: 0, 20, 25, 55 at 6.51%. The Lab 17 DGS10 values. The highest-risk technical claim is no look-ahead. This test deletes every price and yield after December 2016, 2019 and 2024, reruns, and gets identical weights. All 23 pass.
 
-**Screen: `docs/locked-prediction.md` commit on GitHub, then terminal `python locked_test.py`, then `output/locked_test_result.md`.**
+**Screen: GitHub commit `066734f` (docs/locked-prediction.md), then `output/locked_test_result.md` (committed in `a458ecc`). For a live run on camera use `python locked_test.py --dry-run`; do NOT rerun the real runner, which would overwrite the recorded run time.**
 
-[3:25] The locked changed-input test. My AI-off prediction was committed and pushed at `[commit, time]`, before the run. The runner refuses to run otherwise. I changed `[input]` from `[old]` to `[new]`. I predicted `[your prediction in one sentence]`. The result: `[actual in one sentence]`. `[Matched / did not match]`, because `[the mechanism in one sentence]`. The decision `[stays REJECT / changes to ...]`.
+[3:25] The locked changed-input test. My AI-off prediction was committed and pushed at 3:32 PM on November 23rd, commit 066734f, two minutes before the run. The runner refuses to run otherwise. I raised the CPI assumption from 2.5 to 3%, so the target goes from 6.5 to 7%. I predicted one step from T-bills to ACWI: 20% equity, about 7.6%, and REJECT holds. That matched exactly: 7.59%. Where I missed was 2022, minus 12.3%, not about 11. Going into that year, the higher target swapped 10% of T-bills for AGG, and bonds fell 13%. I expected equity risk; the miss was duration risk. The decision stays REJECT.
 
 **Screen: README "Run it", then report stress table row "60-month window 30%".**
 

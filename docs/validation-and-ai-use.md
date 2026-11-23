@@ -65,22 +65,41 @@ Every input's source, definition, units, frequency, as-of rule, transformation, 
 
 ## 5. Locked Changed-Input Record
 
-**Status at the time this file was drafted: NOT YET RUN.** The prediction must be mine, written with AI closed, so it is not drafted here.
+**Status: COMPLETE.** The prediction is mine, written with AI closed (transcribed verbatim by Claude; see section 6). The run was mine. The post-run trace below was done with Claude Opus 5.5 after the run and checked against the result files.
 
 | Field | Record |
 |---|---|
-| Human-authored AI-off prediction | `docs/locked-prediction.md`, filled by Tobey Uhm with AI closed. Input, old and new values with units, expected direction for each output, expected decision effect, reasoning |
-| Immutable commit (pushed before the run) | `[commit hash and timestamp from output/locked_test_result.md]` |
-| Prediction SHA-256 | `[from output/locked_test_result.md]` |
-| Run | `python locked_test.py`, AI closed, `[run timestamp]`. The runner refuses unless the file is filled, committed and on GitHub |
-| Input and values (units) | `[input]`: `[old]` -> `[new]` `[unit]` |
-| Before / after output | `output/locked_test_result.md` and `.json` (weights, net return, volatility, verdicts, stop tests S1-S3, walk-forward return, worst year, stops, turnover breaches) |
-| Expected vs actual direction | `[for each row: expected, actual, match?]` |
-| Predicted vs actual decision effect | `[predicted]` / `[actual: does REJECT hold? which stop tests changed?]` |
-| Reconciliation and failure diagnosis | `[why the actual matched or did not; where expectation and result diverge, the mechanism in the code that explains it]` |
-| Decision consequence | `[does a trigger, the range or the committee ask change?]` |
+| Human-authored AI-off prediction | [`docs/locked-prediction.md`](locked-prediction.md), signed Tobey Uhm, 2026-11-23 15:32 EST |
+| Immutable commit (pushed before the run) | `066734f0b27f4c98522e12e8fcfdfcc0895d7aa8`, committed 2026-11-23T15:32:26-05:00, on `origin/main` before the run. The file has not changed since that commit |
+| Prediction SHA-256 | `d41533da9b8c86bfb36b902a91bd8a892c5ef5c84738d2a8470504002d58a22c` |
+| Run | `python locked_test.py`, AI closed, 2026-11-23T20:34:15Z (15:34 EST, two minutes after the lock). Output committed in `a458ecc` |
+| Input and values (units) | `cpi_pct` (CPI assumption, % a year): **2.5 -> 3.0**, so objective O1 rises from 6.5% to **7.0%** |
+| Before / after output | [`output/locked_test_result.md`](../output/locked_test_result.md) and `.json` |
+| Predicted vs actual decision effect | **Predicted:** REJECT stays; S1 passes; S2 and S3 stay tripped. **Actual:** REJECT stays; S1 ok; S2 TRIPPED (60-month window 30%); S3 TRIPPED (2022: -12.3%). **Match.** |
 
-Guidance for the AI-off prediction, so the test is a real test: choose an input value that is **not** already in the stress table (for example a different window or shift size), and predict before opening the app with that value.
+**Expected vs actual, row by row**
+
+| | Output | Before | My prediction | Actual | Direction | Size |
+|---|---|---|---|---|---|---|
+| 5a | ACWI weight | 15% | up to 20% | 20% | match | exact |
+| 5b | BIL weight | 85% | down to 80% | 80% | match | exact |
+| 5c | Net expected return | 6.77% | up to about 7.6% | 7.59% | match | exact |
+| 5d | Volatility | 1.76% | up to about 2.3% | 2.33% | match | exact |
+| 5e | Equal-weight verdict | FAIL M5, R1 | unchanged | FAIL M5, R1 | match | n/a |
+| 5f | Stop test S2 | TRIPPED | stays TRIPPED | TRIPPED (60-month window 30%) | match | n/a |
+| 5g | Stop test S3 / worst year | 2022: -10.8% | stays TRIPPED, about -11% | 2022: **-12.3%** | match | **loss understated by 1.3 pts** |
+| 5h | Walk-forward annual return | 6.33% | up slightly, to about 6.5% | **6.44%** | match | overstated by 0.06 pts |
+| - | Walk-forward stops (not predicted) | 3 | - | **4** | - | - |
+| - | Turnover breaches (not predicted) | 12 | - | 11 | - | - |
+
+**Reconciliation and failure diagnosis**
+
+- **Today's portfolio (5a-5d) matched exactly, for the reason I gave.** At a 7.0% target, the old 85/15 mix (6.77%) no longer qualifies. The lowest-volatility mix that clears 7.0% moves one 5-point step from BIL to ACWI. That adds 0.05 x (20.78% - 4.34%) = 0.82 pts, giving 7.59% at 2.33% volatility. My item 4 and item 7 arithmetic is the code's arithmetic.
+- **Why 2022 was worse than I predicted (5g).** My item 8 said to check "what the model actually held going into that year". The trace (same engine, CPI 2.5 vs 3.0, rebalance log) shows the higher target changed the December 2021 portfolio from **BIL 30 / IEF 50 / ACWI 20** to **BIL 20 / IEF 50 / AGG 10 / ACWI 20**. To reach 7.0% with the least volatility, the optimizer swapped 10% of T-bills for the aggregate bond fund, because AGG's estimated return beat BIL's (36 months to Dec 2021: AGG 4.58%, BIL 0.77%). 2022 was the year bonds fell with stocks: AGG -13.0%, BIL +1.4%. So that 10% cost 0.10 x 14.4 = 1.44 pts, and the loss went from -10.8% to -12.3%. I predicted more equity risk; the extra loss came from **duration risk**, which I did not consider.
+- **Why the annual return rose less than I predicted (5h), and why there was a fourth stop.** At 7.0%, **December 2024 became infeasible**: no mix passed every rule, so the process stopped and held the 60/40 benchmark through 2025. That is the "no mix may qualify" case my item 7 anticipated. The benchmark returned 16.3% in 2025 against 14.3% for the old mix, which helped. Higher-target years also held more ACWI. But the 2022 loss (-1.5 pts) and small losses in 2013, 2014, 2015 and 2018 offset most of the gain. Net effect: +0.11 pts a year, against my +0.17.
+- **What the miss teaches.** A higher return target does not just add equity. Under a minimum-volatility objective it also reaches for **duration and credit**, the cheapest volatility per unit of return, and that is exactly the risk that failed in 2022. The pass/fail rules cannot see it, which is the same lesson as Lab 13's candidate D.
+
+**Decision consequence:** none to the action. REJECT, 0% to the process and the reserve range are unchanged, because both S2 and S3 still trip. The result strengthens the case: a higher inflation assumption makes the process stop more often (4 of 15 years) and lose more in a bond sell-off. Monitoring note added to the memo's reasoning: if realised CPI runs above 3%, the optimizer's target rises and its bond-duration risk grows. That is another reason a pilot needs a CIO-confirmed loss measure first.
 
 ## 6. Material AI use and checks
 

@@ -77,4 +77,4 @@ The reserve range passes every hard rule. Over the same holdout it returned 7.20
 | Term spread (known T-1) | negative at a December rebalance | log the signal's first live test; no capital moves |
 | JOBY (Project 1) | FAA type certificate and price <= 75% of my Project 1 base value | re-review as a satellite (<= 8%) in Project 1's framework |
 
-**Locked Changed-Input Record:** my AI-off prediction and its run are in `docs/validation-and-ai-use.md`, section 5.
+**Locked Changed-Input Record** (`docs/validation-and-ai-use.md`, section 5). I raised CPI from 2.5% to 3.0% (target 7.0%), predicted with AI off, locked in commit `066734f` before the run. Today's mix moved exactly as predicted, to BIL 80 / ACWI 20 at 7.59%, and REJECT held. The walk-forward was worse than I expected: 2022 fell 12.3% and there were 4 stops. The higher target swapped T-bills for AGG before the 2022 bond sell-off, so a higher inflation assumption adds duration risk and strengthens REJECT.

@@ -3,11 +3,7 @@
 0. **Read `docs/locked-prediction-instructions.md`** before closing AI for the locked record.
 1. **Read and own the decision.** Check every number in `docs/decision-memo.md` against `output/report.md`. If you change the action, range or triggers, edit `config/recommendation.json` and the memo, then run `python analysis.py`.
 2. **GitHub repo: done** (2026-11-23). https://github.com/tobeyuhm/Tobey-Uhm-Project-2, public; opens logged out. `git push` now works from this folder.
-3. **Locked Changed-Input Record (AI closed the whole time):**
-   1. Fill every `TO BE WRITTEN` field in `docs/locked-prediction.md`. Pick a value that is not already in the stress table.
-   2. `git add docs/locked-prediction.md` -> `git commit -m "Locked prediction (AI off)"` -> `git push`.
-   3. `python locked_test.py`, then commit and push `output/locked_test_result.*`.
-   4. Write section 5 of `docs/validation-and-ai-use.md`: expected vs actual, decision effect, diagnosis.
+3. **Locked Changed-Input Record: done** (prediction `066734f`, run `a458ecc`, reconciliation in validation section 5). Read the reconciliation and change any wording that isn't how you'd say it.
 4. **Verify the AI table** in `docs/validation-and-ai-use.md`, section 6:
    - Confirm that Labs 13-17 used Codex GPT-5, and correct it if a different tool or model was shown.
    - Fill the "Recommendation wording" disposition.
