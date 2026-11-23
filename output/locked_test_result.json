@@ -1,0 +1,68 @@
+{
+ "run_utc": "2026-11-23T20:34:15+00:00",
+ "dry_run": false,
+ "prediction_file": "docs/locked-prediction.md",
+ "prediction_sha256": "d41533da9b8c86bfb36b902a91bd8a892c5ef5c84738d2a8470504002d58a22c",
+ "commit": "066734f0b27f4c98522e12e8fcfdfcc0895d7aa8",
+ "committed_at": "2026-11-23T15:32:26-05:00",
+ "on_remote": "origin/main",
+ "remote_url": "https://github.com/tobeyuhm/Tobey-Uhm-Project-2.git",
+ "input": "cpi_pct",
+ "unit": "% a year",
+ "old": "2.5",
+ "new": "3.0",
+ "before": {
+  "feasible": true,
+  "constrained_weights": {
+   "BIL": 0.85,
+   "ACWI": 0.15
+  },
+  "constrained_net_return": 0.06767458873984257,
+  "constrained_volatility": 0.01760967709925477,
+  "constrained_loss_95": -0.03870666991156847,
+  "verdicts": {
+   "equal_weight": "FAIL - M5, R1 (turnover needs committee approval)",
+   "inverse_vol": "FAIL - O1 (turnover needs committee approval)",
+   "benchmark": "FAIL - M3",
+   "constrained": "PASS - every checkable rule (turnover needs committee approval)"
+  },
+  "stop_conditions": {
+   "S1": "ok (feasible)",
+   "S2": "TRIPPED (largest: 60-month window = 30%)",
+   "S3": "TRIPPED (2022: -10.8%)"
+  },
+  "process_status": "STOP",
+  "rule_implied_action": "REJECT (stop rule fires)",
+  "walk_forward_annual_return": 0.06332851437711895,
+  "walk_forward_worst_year": "2022: -10.8%",
+  "walk_forward_stops": 3,
+  "walk_forward_turnover_breaches": 12
+ },
+ "after": {
+  "feasible": true,
+  "constrained_weights": {
+   "BIL": 0.8,
+   "ACWI": 0.2
+  },
+  "constrained_net_return": 0.07591896072408622,
+  "constrained_volatility": 0.023278410077982595,
+  "constrained_loss_95": -0.037625976145804846,
+  "verdicts": {
+   "equal_weight": "FAIL - M5, R1 (turnover needs committee approval)",
+   "inverse_vol": "FAIL - O1 (turnover needs committee approval)",
+   "benchmark": "FAIL - M3",
+   "constrained": "PASS - every checkable rule (turnover needs committee approval)"
+  },
+  "stop_conditions": {
+   "S1": "ok (feasible)",
+   "S2": "TRIPPED (largest: 60-month window = 30%)",
+   "S3": "TRIPPED (2022: -12.3%)"
+  },
+  "process_status": "STOP",
+  "rule_implied_action": "REJECT (stop rule fires)",
+  "walk_forward_annual_return": 0.06435883806901965,
+  "walk_forward_worst_year": "2022: -12.3%",
+  "walk_forward_stops": 4,
+  "walk_forward_turnover_breaches": 11
+ }
+}
