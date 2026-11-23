@@ -4,6 +4,9 @@
 edited or checked by an AI before the run. This file was created as an empty template; the
 template text is not the prediction.
 
+**Read first (before closing AI):** [`locked-prediction-instructions.md`](locked-prediction-instructions.md)
+has the project context, the base-case numbers, how each input enters the code, and the commands.
+
 **Steps:** close AI tools -> fill every `TO BE WRITTEN` field -> `git add docs/locked-prediction.md`
 -> `git commit -m "Locked prediction (AI off)"` -> `git push` -> `python locked_test.py`.
 The runner refuses to run until the file is filled, committed and pushed. After the run, do not
