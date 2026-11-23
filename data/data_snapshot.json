@@ -1,0 +1,15 @@
+{
+  "downloaded_utc": "2026-11-23T17:47:18+00:00",
+  "files": {
+    "prices_monthly.csv": {
+      "rows": 223,
+      "sha256": "181d3b83cd42e3e97b15aeb564a58068bf2180d86ed55c9e450acd57b413972e",
+      "source": "Yahoo Finance chart API, interval=1mo, adjclose"
+    },
+    "treasury_curve_daily.csv": {
+      "rows": 4722,
+      "sha256": "b4f316c4574ceb13f341de025727f1a03aa4e289cf3ca7b9db3c7aa6e886dfac",
+      "source": "U.S. Treasury daily par yield curve CSV"
+    }
+  }
+}

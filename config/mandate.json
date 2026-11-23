@@ -1,0 +1,41 @@
+{
+  "client": "Meridian Foundation Reserve (fictional, Lab 13 common case) - Tobey Uhm's Project 2 mandate",
+  "decision_as_of": "2026-10-30",
+  "last_price_month": "2026-10",
+  "reserve_usd_m": 100.0,
+  "quarterly_distribution_usd_m": 0.75,
+  "quarters_to_cover": 4,
+  "objective": {
+    "cpi_assumption_pct": 2.5,
+    "real_return_pct": 4.0,
+    "note": "S2: CPI + 4% a year net of costs over rolling five-year periods. Tested ex ante as expected return net of trading costs >= CPI assumption + 4%."
+  },
+  "benchmark": {"ACWI": 0.60, "AGG": 0.40},
+  "current_holdings": {"ACWI": 0.60, "AGG": 0.40},
+  "assets": {
+    "BIL":  {"name": "SPDR Bloomberg 1-3 Month T-Bill ETF", "role": "T-bill / payout reserve", "issuer": "U.S. Treasury (fund)", "issuer_exempt": true, "reserve_eligible": true, "days_to_redeem": 1, "trade_cost_bps": 2},
+    "IEF":  {"name": "iShares 7-10 Year Treasury Bond ETF", "role": "Treasury duration", "issuer": "U.S. Treasury (fund)", "issuer_exempt": true, "reserve_eligible": true, "days_to_redeem": 1, "trade_cost_bps": 2},
+    "AGG":  {"name": "iShares Core U.S. Aggregate Bond ETF", "role": "U.S. investment-grade bonds (benchmark sleeve)", "issuer": "diversified fund", "issuer_exempt": true, "reserve_eligible": false, "days_to_redeem": 1, "trade_cost_bps": 2},
+    "LQD":  {"name": "iShares iBoxx $ Investment Grade Corporate Bond ETF", "role": "IG corporate credit", "issuer": "diversified fund", "issuer_exempt": true, "reserve_eligible": false, "days_to_redeem": 1, "trade_cost_bps": 3},
+    "ACWI": {"name": "iShares MSCI ACWI ETF", "role": "Global equities (benchmark sleeve)", "issuer": "diversified fund", "issuer_exempt": true, "reserve_eligible": false, "days_to_redeem": 1, "trade_cost_bps": 3},
+    "JOBY": {"name": "Joby Aviation, Inc. (Project 1 company)", "role": "Single-company satellite", "issuer": "Joby Aviation", "issuer_exempt": false, "reserve_eligible": false, "days_to_redeem": 1, "trade_cost_bps": 25, "first_valid_month": "2021-08"}
+  },
+  "limits": {
+    "liquidity_window_days": 5,
+    "min_liquid_share": 0.90,
+    "issuer_limit": 0.08,
+    "loss_limit_95": 0.10,
+    "turnover_limit": 0.25
+  },
+  "risk_measure_note": "S9 ('no calendar-year loss greater than 10%') had no measure in Lab 13. My mandate operationalises it as a one-year 95% parametric loss, -(expected return - 1.645 x volatility) <= 10% of the reserve, and monitors the realised worst calendar-year return. This interpretation needs CIO confirmation.",
+  "estimation": {"window_months": 36, "grid_step": 0.05, "z_95": 1.645},
+  "signal": {
+    "name": "Treasury term spread (10-year minus 3-month), known before the rebalance",
+    "lag_business_days": 1,
+    "rule": "If the spread is below 0 (inverted curve), move the constrained portfolio's IEF weight into BIL at the rebalance; otherwise keep IEF."
+  },
+  "stop_conditions": {
+    "max_stress_shift": 0.25,
+    "note": "STOP (hold the benchmark, report to committee) if (1) no portfolio passes the base mandate, (2) any single base-case-adjacent stress moves the portfolio by more than the 25% annual turnover limit, or (3) the walk-forward test shows a calendar-year loss worse than the 10% limit."
+  }
+}
