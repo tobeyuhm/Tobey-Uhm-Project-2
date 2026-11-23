@@ -1,9 +1,9 @@
 PROJECT: FIN 43900 Project 2 - Meridian Foundation Reserve process review
 STUDENT: Tobey Uhm
 VIDEO: 2 Code walkthrough
-STABLE VIDEO ID/URL: [YouTube URL after upload]
+STABLE VIDEO ID/URL: https://youtu.be/p_u-aVjCqpM
 TITLE: Tobey Uhm Project 2 Video 2
-DURATION: [m:ss after recording; limit 5:00]
+DURATION: 4:36
 REPOSITORY COMMIT/FROZEN VERSION: tag project2-submission
 
 Note: prepared from the delivery script the student reads on camera (script drafted with Claude Opus 5.5, disclosed in docs/validation-and-ai-use.md). REPLACE with the corrected YouTube transcript after recording: fix finance terms, tickers (BIL, IEF, AGG, LQD, ACWI, JOBY), names and every number; timestamps are approximate section starts.
