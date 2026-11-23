@@ -274,7 +274,7 @@ STRESSES = [
     ("Constraints", "Reserve minimum 10%", {"reserve_min": 0.10}, True),
     ("Constraints", "Loss limit 8% instead of 10%", {"loss_limit": 0.08}, True),
     ("Constraints", "CPI 3.5% (objective 7.5%)", {"cpi_pct": 3.5}, True),
-    ("Constraints", "CPI 1.5% (objective 5.5%)", {"cpi_pct": 1.5}, False),
+    ("Constraints", "CPI 1.5% (objective 5.5%)", {"cpi_pct": 1.5}, True),
 ]
 
 

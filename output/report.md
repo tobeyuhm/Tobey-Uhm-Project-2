@@ -12,7 +12,7 @@ Reject the minimum-volatility optimizer process: allocate 0% of the reserve to i
 
 - **Allocation to the process:** 0% of the $100M reserve (paper-track only; no live capital)
 - **Reserve allocation range:** ACWI 55-60%, AGG 35-40%, BIL 3-5% ($3-5M of T-bills covers the $3.0M twelve-month payout reserve; one-way turnover 3-5%, inside the 25% limit, so no extra committee approval is needed).
-- **Reverses if:** I would change REJECT to PILOT only if the CIO confirms the loss measure and a rerun shows the window shift <= 25% with no walk-forward calendar year below -10%.
+- **Reverses if:** I would change REJECT to PILOT (max 10%) only if the CIO confirms the loss measure and a December rerun shows the window shift <= 25% with no walk-forward calendar year below the confirmed limit. At -10% per calendar year that cannot happen while 2022 is in the holdout, so the CIO answer comes first.
 
 **Why**
 
@@ -27,7 +27,7 @@ Reject the minimum-volatility optimizer process: allocate 0% of the reserve to i
 
 1. Vote to reject adoption of the optimizer process (0% allocation; I keep it on a paper track and rerun it each December).
 2. Approve a compliance rebalance of the current reserve to ACWI 55-60% / AGG 35-40% / BIL 3-5%.
-3. Ask the CIO to resolve the mandate conflict before any optimizer is reconsidered: on Jan 2012 - Oct 2026 data none of the five walk-forward strategies met both CPI + 4% and a 10% worst calendar-year loss. Which one gives way?
+3. Ask the CIO to resolve the mandate conflict before any optimizer is reconsidered: on Jan 2012 - Oct 2026 data none of the four distinct walk-forward strategies (the signal-off variant is identical to the process) met both CPI + 4% and a 10% worst calendar-year loss. Which one gives way?
 
 ## Mandate (from Lab 13)
 
@@ -107,7 +107,7 @@ Monthly test 2008-05 to 2026-10: IEF minus BIL next-month return.
 | Constraints | Reserve minimum 10% | yes | BIL 85%, ACWI 15% | 6.77% | 1.76% | 0% | PASS - every checkable rule (turnover needs committee approval) |
 | Constraints | Loss limit 8% instead of 10% | yes | BIL 85%, ACWI 15% | 6.77% | 1.76% | 0% | PASS - every checkable rule (turnover needs committee approval) |
 | Constraints | CPI 3.5% (objective 7.5%) | yes | BIL 80%, ACWI 20% | 7.59% | 2.33% | 5% | PASS - every checkable rule (turnover needs committee approval) |
-| Constraints | CPI 1.5% (objective 5.5%) | no | BIL 90%, ACWI 10% | 5.94% | 1.20% | 5% | PASS - every checkable rule (turnover needs committee approval) |
+| Constraints | CPI 1.5% (objective 5.5%) | yes | BIL 90%, ACWI 10% | 5.94% | 1.20% | 5% | PASS - every checkable rule (turnover needs committee approval) |
 
 ## The condition that stops the process
 
@@ -177,7 +177,7 @@ Fixed mixes rebalanced each December, trading costs charged, no estimates used. 
 | Mix | Hard-rule verdict | Annual return | Volatility | Max drawdown | Worst calendar year |
 |---|---|---:|---:|---:|---:|
 | Top of range: ACWI 60 / AGG 37 / BIL 3 | PASS - every checkable rule | 7.67% | 8.92% | -20.7% | 2022: -15.8% |
-| Midpoint: ACWI 57.5 / AGG 37.5 / BIL 5 | PASS - every checkable rule | 7.44% | 8.60% | -20.2% | 2022: -15.4% |
+| Middle of range: ACWI 57.5 / AGG 37.5 / BIL 5 | PASS - every checkable rule | 7.44% | 8.60% | -20.2% | 2022: -15.4% |
 | Bottom of range: ACWI 55 / AGG 40 / BIL 5 | PASS - every checkable rule | 7.20% | 8.32% | -19.9% | 2022: -15.3% |
 
 The range clears the 6.5% hurdle on realised returns but not a -10% worst calendar year: the S2 objective and the S9 loss limit conflict on this evidence, which is committee ask 3.
@@ -190,9 +190,9 @@ The range clears the 6.5% hurdle on realised returns but not a -10% worst calend
 | Payout reserve (BIL + IEF) | below 3.0% of the reserve at any month-end | top up BIL from AGG at the next month-end |
 | Calendar-year-to-date return of the reserve | worse than -7% (early warning on the -10% S9 limit) | report to the committee; no forced selling |
 | Optimizer stability (paper track, each December) | 36- vs 60-month allocation shift <= 25% AND no adjacent stress infeasible | re-open a pilot proposal (max 10% of reserve) |
-| Walk-forward realised worst calendar year | no full year below -10% after a CIO-confirmed loss measure | re-open a pilot proposal |
+| Walk-forward realised worst calendar year | no full year below the CIO-confirmed loss limit (if the CIO keeps -10% per calendar year, this cannot pass while 2022 is in the holdout, so REJECT stays) | re-open a pilot proposal |
 | Treasury 10y - 3m term spread (known T-1) | turns negative at a December rebalance | record the signal's first live test; it does not move capital |
-| JOBY (Project 1 company) | FAA type certificate issued and price <= 75% of my Project 1 base value | re-review a satellite position (max 8% issuer limit) in Project 1's framework |
+| JOBY (Project 1 company) | FAA type certificate issued and price <= 75% of my Project 1 base value ($0.34 a share; range $0.00-3.82, as of Sept. 1, 2026) | re-review a satellite position (max 8% issuer limit) in Project 1's framework |
 
 ## Data
 

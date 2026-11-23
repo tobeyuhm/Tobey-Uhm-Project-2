@@ -3,6 +3,8 @@
 **AI use.** I used Claude (Anthropic; Claude Code desktop app, model Claude Opus 5.5, Nov. 23, 2026) to build the app's code and tests, and to draft this memo, the validation record and the video scripts. I used OpenAI Codex (GPT-5) for the Lab 13-17 code this project grows from. The analysis and the decision are mine. Full record: `docs/validation-and-ai-use.md`.
 **Education, not investment advice.** A FIN 43900 course project on a fictional client.
 
+**Baseline and boundary.** Project 2 has no Edition A or B (course rulings of Oct. 14 and Nov. 10, 2026). My dated earlier position is my Lab 13 mandate (Oct. 15) and my Lab 15 call, "pilot" (Oct. 22), kept unchanged in `prior-work/`. Video 1 explains the move from pilot to reject.
+
 To: Meridian Foundation investment committee and CIO · From: Tobey Uhm, portfolio analyst · Decision as of **Oct. 30, 2026** (prices through October 2026 month-end; Treasury curve known Oct. 29) · App: `python app.py` · Visible output: `output/report.md`
 
 ## 1. Recommendation: REJECT the process; rebalance only to fund the payout reserve
@@ -13,7 +15,7 @@ To: Meridian Foundation investment committee and CIO · From: Tobey Uhm, portfol
   1. Vote to reject the optimizer process.
   2. Approve the compliance rebalance.
   3. Direct the CIO to say which gives way, the CPI + 4% objective (S2) or the 10% loss limit (S9). On this evidence, both cannot be met.
-- **What reverses it (REJECT -> PILOT, max 10% of the reserve):** the CIO confirms the loss measure, **and** a December rerun shows the 36- vs 60-month allocation shift is <= 25%, **and** no walk-forward calendar year is below -10%.
+- **What reverses it (REJECT -> PILOT, max 10% of the reserve):** the CIO confirms the loss measure, **and** a December rerun shows the 36- vs 60-month allocation shift is <= 25%, **and** no walk-forward calendar year breaks the CIO-confirmed loss limit. If the CIO keeps -10% per calendar year, the last condition cannot be met while 2022 is in the holdout, so REJECT stands. That is why ask 3 comes first.
 
 ## 2. The mandate and what each portfolio does under it
 
@@ -30,7 +32,7 @@ The constrained portfolio passes, but only because ACWI's trailing 36-month mean
 
 ## 3. Evidence the process is not adoptable
 
-**Stop conditions (set before the results, `config/mandate.json`):** S1, a feasible portfolio exists: **ok**. S2, no adjacent stress moves the portfolio more than the 25% turnover limit: **TRIPPED**, because a 60-month window moves it 30 points (to BIL 55% / ACWI 45%). S3, walk-forward worst calendar year >= -10%: **TRIPPED** at 2022, -10.8%. Two of three trip, so the process stops.
+**Stop conditions (pre-set in `config/mandate.json` and applied mechanically by the code):** S1, a feasible portfolio exists: **ok**. S2, no adjacent stress moves the portfolio more than the 25% turnover limit: **TRIPPED**, because a 60-month window moves it 30 points (to BIL 55% / ACWI 45%). S3, walk-forward worst calendar year >= -10%: **TRIPPED** at 2022, -10.8%. Two of three trip, so the process stops. S2 rests on the 60-month window. I count a stress as "adjacent" when it is a one-step alternative an analyst could equally have chosen: a 24- or 60-month window (the Lab 15 pair), +/-1 pt on an estimate, costs x4, CPI +/-1 pt. The 120-month window, 2-pt shifts and costs x20 are severe cases, reported but not used for S2. Without the 60-month window, the largest adjacent shift is 10% and S2 would pass; the decision would then rest on S3 and the underperformance.
 
 **Walk-forward holdout, Jan 2012 - Oct 2026** (each December the process sees only data to that date; costs charged):
 
@@ -54,15 +56,15 @@ The process trailed the benchmark by 1.35 points a year and missed the 6.5% hurd
 
 ## 4. Why the fallback is the 60/40 plus a T-bill reserve, and its limits
 
-The reserve range passes every hard rule. Over the same holdout it returned 7.20-7.67% a year, above the 6.5% hurdle. It also lost 15.3-15.8% in 2022. No strategy I tested met both S2 and S9 on realised data, which is why ask 3 goes to the CIO rather than to an optimizer. The ex-ante R1 measure did not anticipate 2022: the benchmark showed a 95% loss of only -1.0% (a gain) on today's estimates. That parametric measure understates tail loss, and it is the main limitation of my mandate encoding.
+The reserve range passes every hard rule. Over the same holdout it returned 7.20-7.67% a year, above the 6.5% hurdle. It also lost 15.3-15.8% in 2022, more than the process's -10.8%, and the process had lower volatility (7.07% vs 9.00%) and a smaller drawdown (-13.1% vs -21.2%). So I am not rejecting the process for taking more risk; it took less. I reject it because its allocation is not stable (S2), it breaks the turnover limit in most years, and it missed the return objective, so the committee cannot rely on it. The fallback is the client's own benchmark made compliant, not a claim that it meets S9. No strategy I tested met both S2 and S9 on realised data, which is why ask 3 goes to the CIO rather than to an optimizer. The ex-ante R1 measure did not anticipate 2022: the benchmark showed a 95% loss of only -1.0% (a gain) on today's estimates. That parametric measure understates tail loss, and it is the main limitation of my mandate encoding.
 
 ## 5. Risks, assumptions and monitoring triggers
 
 **Assumptions:**
 
-- CPI is 2.5%; stressed at 1.5% and 3.5%, the decision is unchanged.
+- CPI is 2.5% (the Lab 15 course-case assumption, not a sourced forecast); stressed at 1.5% and 3.5%, and at 3.0% in my locked test, the decision is unchanged.
 - Trading costs are 2-3 bps for ETFs and 25 bps for JOBY.
-- Current holdings equal the benchmark.
+- Current holdings are assumed to equal the 60/40 benchmark; the Lab 13 case does not state them. If they differ, the rebalance size changes, not the action.
 - Historical means are estimates, not forecasts.
 - The realised test uses a fixed 6.5% hurdle, not realised CPI.
 
@@ -73,8 +75,8 @@ The reserve range passes every hard rule. Over the same holdout it returned 7.20
 | Payout reserve (BIL + IEF) | below 3.0% at any month-end | top up BIL from AGG |
 | Year-to-date reserve return | worse than -7% | report to committee (early warning on the 10% limit) |
 | Optimizer paper track, each December | window shift <= 25% and no adjacent stress infeasible | re-open a pilot proposal (max 10%) |
-| Walk-forward worst year under a CIO-confirmed measure | no full year below -10% | re-open a pilot proposal |
+| Walk-forward worst year under a CIO-confirmed measure | no full year below the confirmed limit (cannot pass at -10% while 2022 is in the holdout) | re-open a pilot proposal |
 | Term spread (known T-1) | negative at a December rebalance | log the signal's first live test; no capital moves |
-| JOBY (Project 1) | FAA type certificate and price <= 75% of my Project 1 base value | re-review as a satellite (<= 8%) in Project 1's framework |
+| JOBY (Project 1) | FAA type certificate and price <= 75% of my Project 1 base value ($0.34 a share; range $0.00-3.82, as of Sept. 1, 2026) | re-review as a satellite (<= 8%) in Project 1's framework |
 
 **Locked Changed-Input Record** (`docs/validation-and-ai-use.md`, section 5). I raised CPI from 2.5% to 3.0% (target 7.0%), predicted with AI off, locked in commit `066734f` before the run. Today's mix moved exactly as predicted, to BIL 80 / ACWI 20 at 7.59%, and REJECT held. The walk-forward was worse than I expected: 2022 fell 12.3% and there were 4 stops. The higher target swapped T-bills for AGG before the 2022 bond sell-off, so a higher inflation assumption adds duration risk and strengthens REJECT.

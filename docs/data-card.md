@@ -29,13 +29,13 @@
 | Exclusion | JOBY before 2021-08: those are Reinvent Technology Partners SPAC prices (trust value near $10), not Joby's operating company. They are set to missing in `p2/data.py`, so JOBY's first return is 2021-09. JOBY enters an estimation window only once it has the full window (36 months, from late 2024). |
 | Revisions (found) | Adjusted closes are **restated** after every distribution. My Lab 15 file (downloaded 2026-10-22) had BIL at 91.377 for 2026-09. This download has 91.070. IEF moved from 89.003 to 88.701 and LQD from 101.741 to 101.351. JOBY, which pays no distributions, is unchanged at 6.05. The monthly **returns**, however, match the Lab 15 file to within 0.0001 percentage points for every month and ticker: the adjustment rescales history, it does not change returns. Rule: never compare price *levels* across downloads. The snapshot hash pins this download. |
 | Known when | A month's close is known after its last trading day. A decision at month-end M uses returns through M and trades from M+1. The walk-forward earns month M+1 returns on the new weights. |
-| Licence | Yahoo terms allow personal and educational use. The CSV is kept only so a grader can reproduce the run. |
+| Licence | Yahoo Finance's terms restrict redistribution of its data. The CSV is included, attributed to Yahoo, only so the course's graders can reproduce this educational result. It is not offered for reuse, and it should be replaced with a licensed source or removed if this repository were used beyond the course. |
 
 ## 3. Mandate inputs that are assumptions, not data
 
 | Input | Value | Basis | Stressed |
 |---|---|---|---|
-| CPI assumption | 2.5% a year | Carried from Lab 15 (Meridian training estimate) | 1.5% and 3.5% |
+| CPI assumption | 2.5% a year | The Meridian training estimate from the Lab 15 course case. It is an assumption, not a sourced CPI forecast; FRED's CPI series was unreachable from this machine on 2026-11-23 | 1.5% and 3.5% (stress), 3.0% (locked test) |
 | Trading costs | 2-3 bps per unit traded for ETFs, 25 bps for JOBY | Typical half-spread for large ETFs; wider for a volatile single stock | x4 and x20 |
 | Current holdings | 60% ACWI / 40% AGG | Assumed equal to the S4 benchmark | n/a (turnover is measured from it) |
 | Reserve-eligible | BIL and IEF | S3 allows "cash or daily-liquid government securities"; both funds hold only U.S. Treasuries and trade daily | Reserve minimum 10% stress |

@@ -1,5 +1,7 @@
 # How to write the Locked Changed-Input Record (`docs/locked-prediction.md`)
 
+> **Historical.** These instructions were written before the lock (Nov. 23, 2026) and are kept unchanged as part of the record. The prediction was committed in `066734f` and run in `a458ecc`; status notes and checkboxes below describe that earlier moment.
+
 **AI use.** Claude (Opus 5.5) wrote these instructions. It did not choose your input and did not predict any result. The prediction itself must be written by you with every AI tool closed.
 **Education, not investment advice.**
 

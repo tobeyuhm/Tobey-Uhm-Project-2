@@ -7,6 +7,8 @@ Tobey Uhm · Investment Management Application · decision as of **Oct. 30, 2026
 
 ## The decision
 
+**Baseline and boundary.** Project 2 has no Edition A or B (course rulings of Oct. 14 and Nov. 10, 2026). My dated earlier position is my Lab 13 mandate and my Lab 15 call, "pilot", kept unchanged in [`prior-work/`](prior-work/README.md); Video 1 explains the change to reject.
+
 The **investment committee of the Meridian Foundation's $100M reserve** must decide whether to adopt, allocate to, rebalance, pilot or reject a **constrained minimum-volatility optimizer** for the reserve. The process runs under the Lab 13 mandate: CPI + 4% net of costs, a $3M payout reserve, long-only, an 8% single-company limit, 25% turnover, 90% liquid in five days, and a 10% loss limit. Horizon: seven years, rebalanced each December.
 
 **Result (frozen): REJECT. Allocate 0% to the process.** Rebalance the existing 60/40 to **ACWI 55-60% / AGG 35-40% / BIL 3-5%** to fund the payout reserve.

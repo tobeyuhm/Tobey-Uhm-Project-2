@@ -51,7 +51,7 @@ def build():
     rng = rec["reserve_allocation_range"]
     corners = {
         "Top of range: ACWI 60 / AGG 37 / BIL 3": {"ACWI": rng["ACWI"][1], "AGG": 0.37, "BIL": rng["BIL"][0]},
-        "Midpoint: ACWI 57.5 / AGG 37.5 / BIL 5": {"ACWI": 0.575, "AGG": 0.375, "BIL": rng["BIL"][1]},
+        "Middle of range: ACWI 57.5 / AGG 37.5 / BIL 5": {"ACWI": 0.575, "AGG": 0.375, "BIL": rng["BIL"][1]},
         "Bottom of range: ACWI 55 / AGG 40 / BIL 5": {"ACWI": rng["ACWI"][0], "AGG": rng["AGG"][1], "BIL": rng["BIL"][1]},
     }
     reserve_range = []

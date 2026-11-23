@@ -149,7 +149,7 @@
   "committee_ask": [
    "Vote to reject adoption of the optimizer process (0% allocation; I keep it on a paper track and rerun it each December).",
    "Approve a compliance rebalance of the current reserve to ACWI 55-60% / AGG 35-40% / BIL 3-5%.",
-   "Ask the CIO to resolve the mandate conflict before any optimizer is reconsidered: on Jan 2012 - Oct 2026 data none of the five walk-forward strategies met both CPI + 4% and a 10% worst calendar-year loss. Which one gives way?"
+   "Ask the CIO to resolve the mandate conflict before any optimizer is reconsidered: on Jan 2012 - Oct 2026 data none of the four distinct walk-forward strategies (the signal-off variant is identical to the process) met both CPI + 4% and a 10% worst calendar-year loss. Which one gives way?"
   ],
   "triggers": [
    {
@@ -169,7 +169,7 @@
    },
    {
     "monitor": "Walk-forward realised worst calendar year",
-    "trigger": "no full year below -10% after a CIO-confirmed loss measure",
+    "trigger": "no full year below the CIO-confirmed loss limit (if the CIO keeps -10% per calendar year, this cannot pass while 2022 is in the holdout, so REJECT stays)",
     "action": "re-open a pilot proposal"
    },
    {
@@ -179,11 +179,11 @@
    },
    {
     "monitor": "JOBY (Project 1 company)",
-    "trigger": "FAA type certificate issued and price <= 75% of my Project 1 base value",
+    "trigger": "FAA type certificate issued and price <= 75% of my Project 1 base value ($0.34 a share; range $0.00-3.82, as of Sept. 1, 2026)",
     "action": "re-review a satellite position (max 8% issuer limit) in Project 1's framework"
    }
   ],
-  "reverse_if": "I would change REJECT to PILOT only if the CIO confirms the loss measure and a rerun shows the window shift <= 25% with no walk-forward calendar year below -10%."
+  "reverse_if": "I would change REJECT to PILOT (max 10%) only if the CIO confirms the loss measure and a December rerun shows the window shift <= 25% with no walk-forward calendar year below the confirmed limit. At -10% per calendar year that cannot happen while 2022 is in the holdout, so the CIO answer comes first."
  },
  "decision": {
   "end_month": "2026-10",
@@ -883,7 +883,7 @@
   {
    "group": "Constraints",
    "scenario": "CPI 1.5% (objective 5.5%)",
-   "adjacent": false,
+   "adjacent": true,
    "feasible": true,
    "weights": {
     "BIL": 0.9,
@@ -2429,7 +2429,7 @@
    "worst_calendar_year_return": -0.15809113380728024
   },
   {
-   "mix": "Midpoint: ACWI 57.5 / AGG 37.5 / BIL 5",
+   "mix": "Middle of range: ACWI 57.5 / AGG 37.5 / BIL 5",
    "weights": {
     "ACWI": 0.575,
     "AGG": 0.375,

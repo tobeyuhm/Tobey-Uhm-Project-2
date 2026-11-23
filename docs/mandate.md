@@ -21,4 +21,4 @@
 
 **What Lab 13 taught that still matters:** a portfolio can pass every checkable rule and still be wrong for the client. Lab 13's all-cash candidate D was that case. Today's optimizer answer is a version of it: 85% T-bills, passing only because of a 20.8% trailing equity mean.
 
-**The question for the CIO** (updated from Lab 13): on Jan 2012 - Oct 2026 evidence, none of the five walk-forward strategies met both the CPI + 4% objective and a -10% worst calendar year. Which gives way: the return objective (S2) or the loss limit (S9)?
+**The question for the CIO** (updated from Lab 13): on Jan 2012 - Oct 2026 evidence, none of the four distinct walk-forward strategies (the signal-off variant is identical to the process) met both the CPI + 4% objective and a -10% worst calendar year. Which gives way: the return objective (S2) or the loss limit (S9)?
